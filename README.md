@@ -1,4 +1,5 @@
-# UfoBattle
+# Trabajo de Fin de Master UPM - MIW
+# Ricardo Vente Montes
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.2.
 
