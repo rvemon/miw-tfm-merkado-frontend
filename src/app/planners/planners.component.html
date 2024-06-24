@@ -1,6 +1,6 @@
 <div>
   <main>
-    <button class="new-button">NEW</button>
+    <button class="new-button" (click)="openCreateDialog()">NEW</button>
     <mat-list role="list">
       <mat-list-item role="listitem">
         <div style="display: flex">
@@ -22,5 +22,11 @@
       </mat-list-item>
 
     </mat-list>
+    <!--<div *ngIf="selectedItems.length">
+      <h3>Selected Items:</h3>
+      <ul>
+        <li *ngFor="let item of selectedItems">{{ item.name }}</li>
+      </ul>
+    </div>-->
   </main>
 </div>

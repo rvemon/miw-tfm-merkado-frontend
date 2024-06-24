@@ -5,16 +5,19 @@
       <div style="display: flex;">
         <input type="text" readonly>
         <div style="min-width: 14%"></div>
-        <button class="edit-button">Edit</button>
+        <button class="edit-button" (click)="edit()">Edit</button>
         <button class="edit-button">Shopping List</button>
-        <button class="edit-button">Delete</button>
+        <button class="edit-button" (click)="delete()">Delete</button>
       </div>
       <textarea readonly></textarea>
 
       <div>
         <div style="min-width: 100%; margin-bottom: 2%; margin-top: 2%">
           <a style="vertical-align: bottom; font-weight: bold;">DailyMenu</a>
-          <button style="margin-left: 5%">Add</button>
+          <ng-template [ngIf]="editable">
+            <button style="margin-left: 5%">Add</button>
+          </ng-template>
+
         </div>
         <mat-list role="list">
           <mat-list-item role="listitem">
@@ -23,7 +26,9 @@
                 <div style="font-weight: bold">Daily Menu 1</div>
                 <div style = "margin-left: 1%; display: flex" >Monday</div>
               </div>
-              <mat-icon fontIcon="delete" style="align-self: center"></mat-icon>
+              <ng-template [ngIf]="editable">
+                <mat-icon fontIcon="delete" style="align-self: center" (click)="removeDailyMenu()"></mat-icon>
+              </ng-template>
             </div>
           </mat-list-item>
           <mat-list-item role="listitem">
@@ -32,7 +37,9 @@
                 <div style="font-weight: bold">Daily Menu 2</div>
                 <div style = "margin-left: 1%; display: flex" >Tuesday</div>
               </div>
-              <mat-icon fontIcon="delete" style="align-self: center"></mat-icon>
+              <ng-template [ngIf]="editable">
+                <mat-icon fontIcon="delete" style="align-self: center" (click)="removeDailyMenu()"></mat-icon>
+              </ng-template>
             </div>
           </mat-list-item>
           <mat-list-item role="listitem">
@@ -41,7 +48,9 @@
                 <div style="font-weight: bold">Daily Menu 3</div>
                 <div style = "margin-left: 1%; display: flex" >Wednesday</div>
               </div>
-              <mat-icon fontIcon="delete" style="align-self: center"></mat-icon>
+              <ng-template [ngIf]="editable">
+                <mat-icon fontIcon="delete" style="align-self: center" (click)="removeDailyMenu()"></mat-icon>
+              </ng-template>
             </div>
           </mat-list-item>
 

@@ -10,13 +10,8 @@ import { ToastrModule} from "ngx-toastr";
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
-import { PreferencesComponent } from './preferences/preferences.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { GameComponent } from './game/game.component';
-import { RecordsComponent } from './records/records.component';
-import { MissileComponent } from './missile/missile.component';
-import { UfoComponent } from './ufo/ufo.component';
 import { PlannersComponent } from './planners/planners.component';
 import { DailymenusComponent } from './dailymenus/dailymenus.component';
 import { MealsComponent } from './meals/meals.component';
@@ -27,23 +22,33 @@ import {MatGridListModule} from "@angular/material/grid-list";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {CdkVirtualScrollViewport} from "@angular/cdk/scrolling";
 import { PlannerComponent } from './planners/planner/planner.component';
+import { CreatePlannerDialogComponent } from './planners/create-planner-dialog/create-planner-dialog.component';
+import {MatDialogModule} from "@angular/material/dialog";
+import {MatInputModule} from "@angular/material/input";
+import { ConfirmationDialogComponent } from './shared/confirmation-dialog/confirmation-dialog.component';
+import { CreateDailyMenuDialogComponent } from './dailymenus/create-daily-menu-dialog/create-daily-menu-dialog.component';
+import { CreateMealDialogComponent } from './meals/create-meal-dialog/create-meal-dialog.component';
+import {MatSelectModule} from "@angular/material/select";
+import { MealComponent } from './meals/meal/meal.component';
+import { DailymenuComponent } from './dailymenus/dailymenu/dailymenu.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    PreferencesComponent,
     LoginComponent,
     RegisterComponent,
-    GameComponent,
-    RecordsComponent,
-    MissileComponent,
-    UfoComponent,
     PlannersComponent,
     DailymenusComponent,
     MealsComponent,
     IngredientsComponent,
-    PlannerComponent
+    PlannerComponent,
+    CreatePlannerDialogComponent,
+    ConfirmationDialogComponent,
+    CreateDailyMenuDialogComponent,
+    CreateMealDialogComponent,
+    MealComponent,
+    DailymenuComponent
   ],
   imports: [
     BrowserModule,
@@ -63,7 +68,10 @@ import { PlannerComponent } from './planners/planner/planner.component';
     MatIconModule,
     MatGridListModule,
     MatToolbarModule,
-    CdkVirtualScrollViewport
+    CdkVirtualScrollViewport,
+    MatDialogModule,
+    MatInputModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]
