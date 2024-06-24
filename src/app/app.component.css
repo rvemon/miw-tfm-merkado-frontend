@@ -67,3 +67,27 @@
    .nav-link{
      font-weight: bold;
    }
+
+
+
+
+.navbar-custom .navbar-brand,
+.navbar-custom .nav-link {
+  color: black; /* Change the text color for brand and links */
+}
+
+.navbar-custom .nav-link:hover {
+  color: white; /* Change the hover color for links */
+}
+
+.navbar .active{
+  color: white !important; /* Hacer el texto transparente */
+  text-stroke: 1px black;
+}
+
+.navbar-custom .nav-item.active .nav-link {
+  font-weight: bold; /* Make active link bold */
+  color: white !important;
+}
+
+

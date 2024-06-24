@@ -1,0 +1,29 @@
+<div class="dialog-style">
+  <h2 mat-dialog-title>Create Ingredient</h2>
+  <mat-dialog-content>
+    <div style="display: flex; flex-direction: column; gap: 1%;">
+      <mat-form-field style="width: 100%;">
+        <input matInput placeholder="Name" [(ngModel)]="name">
+      </mat-form-field>
+      <mat-form-field style="width: 100%;">
+        <mat-select [(ngModel)]="ingredientType">
+          <mat-option *ngFor="let option of ingredientTypes" [value]="option">
+            {{option}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field style="width: 100%;">
+        <mat-select [(ngModel)]="ingredientUnit">
+          <mat-option *ngFor="let option of ingredientUnits" [value]="option">
+            {{option}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-button (click)="createDailyMenu()">Ok</button>
+    <button mat-button [mat-dialog-close]="" cdkFocusInitial>No Thanks</button>
+  </mat-dialog-actions>
+</div>
+

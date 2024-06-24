@@ -25,16 +25,18 @@ mat-list-item {
 }
 
 input{
+  padding-left: 1% ;
+  min-width: 25%;
   border: 3px solid black;
 }
 
-textarea{
-  border: 3px solid black;
-}
 
-textarea{
+mat-select{
   margin-top: 2%;
-  min-width: 98%;
+  max-width: 25%;
+  background-color: white;
+  border: 3px solid black;
+  padding-left: 1% ;
 }
 
 .list-element{
@@ -61,3 +63,4 @@ main{
   justify-content: center;
   align-items: center;
 }
+

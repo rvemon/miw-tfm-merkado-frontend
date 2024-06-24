@@ -9,6 +9,7 @@ import { MealsComponent } from './meals/meals.component';
 import { IngredientsComponent } from './ingredients/ingredients.component';
 import { PlannerComponent } from './planners/planner/planner.component';
 import {DailymenuComponent} from "./dailymenus/dailymenu/dailymenu.component";
+import {MealComponent} from "./meals/meal/meal.component";
 
 
 const routes: Routes = [
@@ -20,6 +21,7 @@ const routes: Routes = [
     {path: 'dailymenus', component: DailymenusComponent},
     {path: 'dailymenu', component: DailymenuComponent},
     {path: 'meals', component: MealsComponent},
+    {path: 'meal', component: MealComponent},
     {path: 'ingredients', component: IngredientsComponent},
     {path: '', redirectTo: '/home', pathMatch: 'full'},
     {path: '**', redirectTo: '/home', pathMatch: 'full'}

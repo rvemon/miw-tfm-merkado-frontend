@@ -1,1 +1,26 @@
-<p>meals works!</p>
+<div>
+  <main>
+    <button class="new-button" (click)="openCreateDialog()">NEW</button>
+    <mat-list role="list">
+      <mat-list-item role="listitem">
+        <div style="display: flex">
+          <div style="display: block" class="list-element">
+            <div style="font-weight: bold">Meal 1</div>
+            <div style = "margin-left: 1%; display: flex" >MAIN</div>
+          </div>
+          <mat-icon fontIcon="search" style="align-self: center" (click)="openMeal()"></mat-icon>
+        </div>
+      </mat-list-item>
+      <mat-list-item role="listitem">
+        <div style="display: flex">
+          <div style="display: block" class="list-element">
+            <div style="font-weight: bold">MEAL 2</div>
+            <div style = "margin-left: 1%; display: flex" >DRINK</div>
+          </div>
+          <mat-icon fontIcon="search" style="align-self: center" (click)="openMeal()"></mat-icon>
+        </div>
+      </mat-list-item>
+
+    </mat-list>
+  </main>
+</div>

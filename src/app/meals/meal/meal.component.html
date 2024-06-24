@@ -1,0 +1,69 @@
+<div>
+  <a style="font-weight: bold">Meal</a>
+  <main>
+    <div>
+      <div style="display: flex;">
+        <input type="text" readonly value="Meal 1">
+        <div style="min-width: 14%"></div>
+        <button class="edit-button" (click)="edit()">Edit</button>
+        <button class="edit-button" (click)="delete()">Delete</button>
+      </div>
+      <mat-select [(ngModel)]="category">
+        <mat-option *ngFor="let option of categories" [value]="option">
+          {{option}}
+        </mat-option>
+      </mat-select>
+
+      <div>
+        <div style="min-width: 100%; margin-bottom: 2%; margin-top: 2%">
+          <a style="vertical-align: bottom; font-weight: bold;">Ingredients</a>
+          <ng-template [ngIf]="editable">
+            <button style="margin-left: 5%" (click)="addIngredient()">Add</button>
+          </ng-template>
+
+        </div>
+        <mat-list role="list">
+          <mat-list-item role="listitem">
+            <div style="display: flex">
+              <div style="display: flex" class="list-element">
+                <div style="font-weight: bold">Ingredient 1</div>
+                <div style = "margin-left: 1%; display: flex" >quantity:</div>
+                <div style = "margin-left: 1%; display: flex" >3</div>
+              </div>
+              <ng-template [ngIf]="editable">
+                <mat-icon fontIcon="delete" style="align-self: center" (click)="removeIngredient()"></mat-icon>
+              </ng-template>
+            </div>
+          </mat-list-item>
+          <mat-list-item role="listitem">
+            <div style="display: flex">
+              <div style="display: flex" class="list-element">
+                <div style="font-weight: bold">Ingredient 2</div>
+                <div style = "margin-left: 1%; display: flex" >quantity:</div>
+                <div style = "margin-left: 1%; display: flex" >1</div>
+              </div>
+              <ng-template [ngIf]="editable">
+                <mat-icon fontIcon="delete" style="align-self: center" (click)="removeIngredient()"></mat-icon>
+              </ng-template>
+            </div>
+          </mat-list-item>
+          <mat-list-item role="listitem">
+            <div style="display: flex">
+              <div style="display: flex" class="list-element">
+                <div style="font-weight: bold">Ingredient 3</div>
+                <div style = "margin-left: 1%; display: flex" >quantity:</div>
+                <div style = "margin-left: 1%; display: flex" >4</div>
+              </div>
+              <ng-template [ngIf]="editable">
+                <mat-icon fontIcon="delete" style="align-self: center" (click)="removeIngredient()"></mat-icon>
+              </ng-template>
+            </div>
+          </mat-list-item>
+
+        </mat-list>
+      </div>
+    </div>
+  </main>
+</div>
+
+

@@ -1,0 +1,30 @@
+<div class="dialog-style">
+  <h2 mat-dialog-title>Create Meal</h2>
+  <mat-dialog-content>
+    <div style="display: flex; flex-direction: column; gap: 1%;">
+      <mat-form-field style="width: 100%;">
+        <input matInput placeholder="Name" [(ngModel)]="name">
+      </mat-form-field>
+      <mat-form-field style="width: 100%;">
+        <mat-select [(ngModel)]="category">
+          <mat-option *ngFor="let option of categories" [value]="option">
+            {{option}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <mat-selection-list #items>
+      <mat-list-option *ngFor="let item of data.items" [value]="item">
+        {{ item.name }}
+        <div style="display: inline-block; margin-left: 20px;">
+          <input type="number" min="0" [(ngModel)]="item.quantity" placeholder="Quantity" style="width: 60px;">
+        </div>
+      </mat-list-option>
+    </mat-selection-list>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-button (click)="createMeal(items.selectedOptions.selected)">Ok</button>
+    <button mat-button [mat-dialog-close]="" cdkFocusInitial>No Thanks</button>
+  </mat-dialog-actions>
+</div>
+

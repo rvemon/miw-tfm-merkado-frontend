@@ -1,1 +1,59 @@
-<p>ingredients works!</p>
+<div>
+  <main>
+    <button class="new-button" (click)="openCreateDialog()">NEW</button>
+    <button class="new-button" (click)="edit()">EDIT</button>
+
+    <mat-list role="list">
+      <mat-list-item role="listitem">
+        <div style="display: flex">
+          <div style="display: flex" class="list-element">
+            <div style="font-weight: bold; align-self: center">Ingredient 1</div>
+            <mat-form-field >
+              <mat-select [(ngModel)]="ingredientType">
+                <mat-option *ngFor="let option of ingredientTypes" [value]="option">
+                  {{option}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-select [(ngModel)]="ingredientUnit">
+                <mat-option *ngFor="let option of ingredientUnits" [value]="option">
+                  {{option}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <ng-template [ngIf]="editable">
+            <mat-icon fontIcon="delete" style="align-self: center" (click)="delete()"></mat-icon>
+          </ng-template>
+        </div>
+      </mat-list-item>
+      <mat-list-item role="listitem">
+        <div style="display: flex">
+          <div style="display: flex" class="list-element">
+            <div style="font-weight: bold; align-self: center">Ingredient 2</div>
+            <mat-form-field >
+              <mat-select [(ngModel)]="ingredientType2">
+                <mat-option *ngFor="let option of ingredientTypes" [value]="option">
+                  {{option}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-select [(ngModel)]="ingredientUnit2">
+                <mat-option *ngFor="let option of ingredientUnits" [value]="option">
+                  {{option}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <ng-template [ngIf]="editable">
+            <mat-icon fontIcon="delete" style="align-self: center"></mat-icon>
+          </ng-template>
+        </div>
+      </mat-list-item>
+
+    </mat-list>
+
+  </main>
+</div>

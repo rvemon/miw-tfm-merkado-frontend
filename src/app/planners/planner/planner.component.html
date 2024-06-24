@@ -3,13 +3,13 @@
   <main>
     <div>
       <div style="display: flex;">
-        <input type="text" readonly>
+        <input type="text" value="Planner 1">
         <div style="min-width: 14%"></div>
         <button class="edit-button" (click)="edit()">Edit</button>
         <button class="edit-button">Shopping List</button>
         <button class="edit-button" (click)="delete()">Delete</button>
       </div>
-      <textarea readonly></textarea>
+      <textarea >Planner 1 Description</textarea>
 
       <div>
         <div style="min-width: 100%; margin-bottom: 2%; margin-top: 2%">
@@ -55,6 +55,11 @@
           </mat-list-item>
 
         </mat-list>
+        <ng-template [ngIf]="editable">
+          <div class="save-button">
+            <button style="min-width: 33%">Save</button>
+          </div>
+        </ng-template>
       </div>
     </div>
   </main>

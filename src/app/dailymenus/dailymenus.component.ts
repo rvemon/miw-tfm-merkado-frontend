@@ -17,7 +17,6 @@ export class DailymenusComponent {
   }
 
   openDailyMenu() {
-    console.log("hola");
     this.router.navigate(['dailymenu']);
   }
 

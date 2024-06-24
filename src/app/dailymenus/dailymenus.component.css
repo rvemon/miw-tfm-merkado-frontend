@@ -19,7 +19,7 @@
 mat-list-item {
   max-width: 98%;
   margin: 1%;
-  border: 3px dashed blue;
+  border: 3px dashed #BCD2C3;
 }
 
 .list-element{
@@ -32,3 +32,4 @@ mat-list-item {
   margin-bottom: 1%;
   min-width: 33%;
 }
+

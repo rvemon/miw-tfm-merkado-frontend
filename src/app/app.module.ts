@@ -31,6 +31,8 @@ import { CreateMealDialogComponent } from './meals/create-meal-dialog/create-mea
 import {MatSelectModule} from "@angular/material/select";
 import { MealComponent } from './meals/meal/meal.component';
 import { DailymenuComponent } from './dailymenus/dailymenu/dailymenu.component';
+import { CreateIngredientDialogComponent } from './ingredients/create-ingredient-dialog/create-ingredient-dialog.component';
+import { AddIngredientDialogComponent } from './meals/meal/add-ingredient-dialog/add-ingredient-dialog.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +50,9 @@ import { DailymenuComponent } from './dailymenus/dailymenu/dailymenu.component';
     CreateDailyMenuDialogComponent,
     CreateMealDialogComponent,
     MealComponent,
-    DailymenuComponent
+    DailymenuComponent,
+    CreateIngredientDialogComponent,
+    AddIngredientDialogComponent
   ],
   imports: [
     BrowserModule,
