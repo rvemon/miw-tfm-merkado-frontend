@@ -12,7 +12,8 @@ export interface DialogData {
 @Component({
   selector: 'app-create-planner-dialog',
   templateUrl: './create-planner-dialog.component.html',
-  styleUrls: ['./create-planner-dialog.component.css']
+  styleUrls: ['./create-planner-dialog.component.css',
+    './../../shared/shared-styles.css']
 })
 
 export class CreatePlannerDialogComponent {

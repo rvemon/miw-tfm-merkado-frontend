@@ -12,7 +12,8 @@ export interface DialogData {
 @Component({
   selector: 'app-create-daily-menu-dialog',
   templateUrl: './create-daily-menu-dialog.component.html',
-  styleUrls: ['./create-daily-menu-dialog.component.css']
+  styleUrls: ['./create-daily-menu-dialog.component.css',
+    './../../shared/shared-styles.css']
 })
 export class CreateDailyMenuDialogComponent {
   name: string = '';

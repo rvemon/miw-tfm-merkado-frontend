@@ -23,8 +23,8 @@
     </mat-selection-list>
   </mat-dialog-content>
   <mat-dialog-actions>
-    <button mat-button (click)="createMeal(items.selectedOptions.selected)">Ok</button>
-    <button mat-button [mat-dialog-close]="" cdkFocusInitial>No Thanks</button>
+    <button class="dialog-button" mat-button (click)="createMeal(items.selectedOptions.selected)">Confirm</button>
+    <button class="dialog-button" mat-button [mat-dialog-close]="" cdkFocusInitial>Cancel</button>
   </mat-dialog-actions>
 </div>
 

@@ -18,7 +18,8 @@ interface Option {
 @Component({
   selector: 'app-create-meal-dialog',
   templateUrl: './create-meal-dialog.component.html',
-  styleUrls: ['./create-meal-dialog.component.css']
+  styleUrls: ['./create-meal-dialog.component.css',
+    './../../shared/shared-styles.css']
 })
 export class CreateMealDialogComponent {
   name: string = '';

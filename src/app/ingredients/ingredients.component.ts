@@ -2,6 +2,8 @@ import {Component, inject} from '@angular/core';
 import { Router } from '@angular/router';
 import {MatDialog} from "@angular/material/dialog";
 import {CreateIngredientDialogComponent} from "./create-ingredient-dialog/create-ingredient-dialog.component";
+import {IngredientService} from "./ingredient.service";
+import {Ingredient} from "../shared/model/ingredient.model";
 
 @Component({
   selector: 'app-ingredients',
@@ -18,8 +20,14 @@ export class IngredientsComponent {
   ingredientUnit: string = '';
   ingredientUnit2: string = '';
 
+  ingredients: Ingredient[] = [];
 
-  constructor(private router: Router) {
+
+  constructor(private router: Router, private ingredientService: IngredientService) {
+  }
+
+  ngOnInit(): void {
+    this.getIngredientsByUserId();
   }
 
   openCreateDialog(){
@@ -34,5 +42,19 @@ export class IngredientsComponent {
 
   edit() {
     this.editable= !this.editable;
+  }
+
+  getIngredientsByUserId(): void {
+    this.ingredientService.getIngredientsByUserId("a")
+      .subscribe(
+        (data: Ingredient[]) => {
+          this.ingredients = data;
+          console.log("Ingredientes obtenidos:", this.ingredients);
+        },
+        (error) => {
+          console.error("Error al obtener ingredientes:", error);
+          // Manejo de errores aquí
+        }
+      );
   }
 }
