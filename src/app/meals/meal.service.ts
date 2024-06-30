@@ -35,4 +35,8 @@ export class MealService{
     return this.http.delete('http://localhost:8080/meals/'+ id);
   }
 
+  deleteMealIngredient(id: string){
+    return this.http.delete('http://localhost:8080/meals/meal-ingredient/'+ id);
+  }
+
 }

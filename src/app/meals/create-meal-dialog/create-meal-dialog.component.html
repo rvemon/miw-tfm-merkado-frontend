@@ -13,17 +13,20 @@
         </mat-select>
       </mat-form-field>
     </div>
-    <mat-selection-list #items>
-      <mat-list-option *ngFor="let item of data.items" [value]="item">
-        {{ item.name }}
-        <div style="display: inline-block; margin-left: 20px;">
-          <input type="number" min="0" [(ngModel)]="item.quantity" placeholder="Quantity" style="width: 60px;">
+    <mat-selection-list #ingredients>
+      <mat-list-option *ngFor="let ingredient of mealIngredients" [value]="ingredient" >
+        <div style="display: flex">
+          <div style="min-width: 30%">{{ ingredient.ingredient.name }}</div>
+          <div style="display: inline-block; margin-left: 20px;">
+            <input type="number" min="0" [(ngModel)]="ingredient.quantity" placeholder="Quantity" style="width: 60px;">
+          </div>
         </div>
       </mat-list-option>
     </mat-selection-list>
+
   </mat-dialog-content>
   <mat-dialog-actions>
-    <button class="dialog-button" mat-button (click)="createMeal(items.selectedOptions.selected)">Confirm</button>
+    <button class="dialog-button" mat-button (click)="createMeal(ingredients.selectedOptions.selected)">Confirm</button>
     <button class="dialog-button" mat-button [mat-dialog-close]="" cdkFocusInitial>Cancel</button>
   </mat-dialog-actions>
 </div>

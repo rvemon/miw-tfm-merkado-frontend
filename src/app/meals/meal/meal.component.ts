@@ -1,4 +1,4 @@
-import {Component, DestroyRef} from '@angular/core';
+import {Component, DestroyRef, OnInit} from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
 import {ConfirmationDialogComponent} from "../../shared/confirmation-dialog/confirmation-dialog.component";
 import {AddIngredientDialogComponent} from "./add-ingredient-dialog/add-ingredient-dialog.component";
@@ -11,7 +11,7 @@ import {MealService} from "../meal.service";
   templateUrl: './meal.component.html',
   styleUrls: ['./meal.component.css', '../../shared/shared-styles.css']
 })
-export class MealComponent {
+export class MealComponent implements OnInit{
   meal!: Meal;
   editable: boolean = false;
   categories: string[] = ['APPETIZER', 'SOUP', 'SALAD', 'MAIN', 'DESSERT', 'DRINK'];
@@ -106,9 +106,12 @@ export class MealComponent {
 
     dialogRef.afterClosed().subscribe(result => {
       if(result){
-        this.meal.ingredients = this.meal.ingredients.filter(p => p.id !== id);
-        console.log("remove ingredient");
-        console.log("nuevos ingredientes", this.meal.ingredients)
+        this.mealService.deleteMealIngredient(id).subscribe(
+          ()=>{
+            console.log("meal ingredient deleted");
+            this.getMeal(this.meal.id);
+          }
+        );
       }
       else{
         console.log("cancel");
@@ -129,5 +132,8 @@ export class MealComponent {
         this.getMeal(this.meal.id);
       }
     );
+  }
+
+  ngOnInit(): void {
   }
 }

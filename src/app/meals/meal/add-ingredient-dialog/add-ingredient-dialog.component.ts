@@ -10,7 +10,8 @@ import {MealIngredient} from "../../../shared/model/mealIngredient.model";
 @Component({
   selector: 'app-add-ingredient-dialog',
   templateUrl: './add-ingredient-dialog.component.html',
-  styleUrls: ['./add-ingredient-dialog.component.css']
+  styleUrls: ['./add-ingredient-dialog.component.css',
+    './../../../shared/shared-styles.css']
 })
 export class AddIngredientDialogComponent {
   meal!:Meal;
@@ -27,7 +28,7 @@ export class AddIngredientDialogComponent {
   ) {
     console.log("data", data);
     this.meal = data;
-    this.getIngredients(this.meal.id);
+    this.getIngredients(this.meal.userId);
   }
 
   getIngredients(id: string){
