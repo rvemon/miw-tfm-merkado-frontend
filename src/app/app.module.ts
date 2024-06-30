@@ -33,6 +33,7 @@ import { MealComponent } from './meals/meal/meal.component';
 import { DailymenuComponent } from './dailymenus/dailymenu/dailymenu.component';
 import { CreateIngredientDialogComponent } from './ingredients/create-ingredient-dialog/create-ingredient-dialog.component';
 import { AddIngredientDialogComponent } from './meals/meal/add-ingredient-dialog/add-ingredient-dialog.component';
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 @NgModule({
   declarations: [
@@ -54,29 +55,30 @@ import { AddIngredientDialogComponent } from './meals/meal/add-ingredient-dialog
     CreateIngredientDialogComponent,
     AddIngredientDialogComponent
   ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule,
-    BrowserAnimationsModule,
-    AppRoutingModule,
-    ToastrModule.forRoot({
-      'timeOut': 5000,
-      'closeButton': true,
-      'tapToDismiss': true,
-      'countDuplicates': true,
-      'positionClass': 'toast-top-right'
-    }),
-    MatListModule,
-    MatIconModule,
-    MatGridListModule,
-    MatToolbarModule,
-    CdkVirtualScrollViewport,
-    MatDialogModule,
-    MatInputModule,
-    MatSelectModule
-  ],
+    imports: [
+        BrowserModule,
+        HttpClientModule,
+        FormsModule,
+        ReactiveFormsModule,
+        BrowserAnimationsModule,
+        AppRoutingModule,
+        ToastrModule.forRoot({
+            'timeOut': 5000,
+            'closeButton': true,
+            'tapToDismiss': true,
+            'countDuplicates': true,
+            'positionClass': 'toast-top-right'
+        }),
+        MatListModule,
+        MatIconModule,
+        MatGridListModule,
+        MatToolbarModule,
+        CdkVirtualScrollViewport,
+        MatDialogModule,
+        MatInputModule,
+        MatSelectModule,
+        MatTooltipModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -3,17 +3,17 @@
   <mat-dialog-content>
     <div style="display: flex; flex-direction: column; gap: 1%;">
       <mat-form-field style="width: 100%;">
-        <input matInput placeholder="Name" [(ngModel)]="name">
+        <input matInput placeholder="Name" [(ngModel)]="newIngredient.name">
       </mat-form-field>
       <mat-form-field style="width: 100%;">
-        <mat-select [(ngModel)]="ingredientType">
+        <mat-select [(ngModel)]="newIngredient.ingredientType" placeholder="Type">
           <mat-option *ngFor="let option of ingredientTypes" [value]="option">
             {{option}}
           </mat-option>
         </mat-select>
       </mat-form-field>
       <mat-form-field style="width: 100%;">
-        <mat-select [(ngModel)]="ingredientUnit">
+        <mat-select [(ngModel)]="newIngredient.measurement" placeholder="Measurement">
           <mat-option *ngFor="let option of ingredientUnits" [value]="option">
             {{option}}
           </mat-option>
@@ -22,7 +22,7 @@
     </div>
   </mat-dialog-content>
   <mat-dialog-actions>
-    <button class="dialog-button" mat-button (click)="createDailyMenu()">Confirm</button>
+    <button class="dialog-button" mat-button (click)="createIngredient()">Confirm</button>
     <button class="dialog-button" mat-button [mat-dialog-close]="" cdkFocusInitial>Cancel</button>
   </mat-dialog-actions>
 </div>

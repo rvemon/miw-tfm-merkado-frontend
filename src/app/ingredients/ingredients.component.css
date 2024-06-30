@@ -23,8 +23,8 @@ mat-list-item {
 }
 
 .list-element{
-  max-width: 95%;
-  min-width: 95%;
+  max-width: 90%;
+  min-width: 90%;
 }
 
 .new-button{
@@ -32,6 +32,7 @@ mat-list-item {
   margin-top: 1%;
   margin-bottom: 1%;
   min-width: 33%;
+  cursor: pointer;
 }
 
 mat-form-field {

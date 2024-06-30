@@ -2,58 +2,48 @@
   <main>
     <button class="new-button" (click)="openCreateDialog()">NEW</button>
     <button class="new-button" (click)="edit()">EDIT</button>
-
     <mat-list role="list">
-      <mat-list-item role="listitem">
+      <div title style="display: flex; min-width: 100%">
+        <div style="min-width: 40%; max-width: 40%; text-align: center; font-weight: bold;">Name</div>
+        <div style="min-width: 25%; max-width: 25%; text-align: left; font-weight: bold;">Type</div>
+        <div style="min-width: 30%; max-width: 30%; text-align: left; font-weight: bold;">Measurement</div>
+        <div></div>
+      </div>
+      <mat-list-item *ngFor="let ingredient of ingredients" role="listitem">
         <div style="display: flex">
           <div style="display: flex" class="list-element">
-            <div style="font-weight: bold; align-self: center">Ingredient 1</div>
-            <mat-form-field >
-              <mat-select [(ngModel)]="ingredientType">
-                <mat-option *ngFor="let option of ingredientTypes" [value]="option">
-                  {{option}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-            <mat-form-field>
-              <mat-select [(ngModel)]="ingredientUnit">
-                <mat-option *ngFor="let option of ingredientUnits" [value]="option">
-                  {{option}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
+            <input class="div-name" [(ngModel)]="ingredient.name"
+                   [readOnly]="!editable" [ngClass]="{'input-editable': editable , 'input-no-editable': !editable}">
+            <div class="div-select">
+              <mat-form-field>
+                <mat-select [(ngModel)]="ingredient.ingredientType" [disabled]="!editable">
+                  <mat-option *ngFor="let option of ingredientTypes" [value]="option">
+                    {{option}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="div-select">
+              <mat-form-field>
+                <mat-select [(ngModel)]="ingredient.measurement" [disabled]="!editable">
+                  <mat-option *ngFor="let option of ingredientUnits" [value]="option">
+                    {{option}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
           </div>
           <ng-template [ngIf]="editable">
-            <mat-icon fontIcon="delete" style="align-self: center" (click)="delete()"></mat-icon>
+            <mat-icon matTooltip="delete" fontIcon="delete" style="align-self: center; margin-left: 1%; cursor:pointer;" (click)="delete(ingredient.id)"></mat-icon>
           </ng-template>
-        </div>
-      </mat-list-item>
-      <mat-list-item role="listitem">
-        <div style="display: flex">
-          <div style="display: flex" class="list-element">
-            <div style="font-weight: bold; align-self: center">Ingredient 2</div>
-            <mat-form-field >
-              <mat-select [(ngModel)]="ingredientType2">
-                <mat-option *ngFor="let option of ingredientTypes" [value]="option">
-                  {{option}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-            <mat-form-field>
-              <mat-select [(ngModel)]="ingredientUnit2">
-                <mat-option *ngFor="let option of ingredientUnits" [value]="option">
-                  {{option}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
           <ng-template [ngIf]="editable">
-            <mat-icon fontIcon="delete" style="align-self: center"></mat-icon>
+            <mat-icon matTooltip="save" fontIcon="save" style="align-self: center; cursor:pointer;" (click)="save(ingredient)"></mat-icon>
           </ng-template>
         </div>
       </mat-list-item>
 
     </mat-list>
+
 
   </main>
 </div>

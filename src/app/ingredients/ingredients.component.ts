@@ -8,17 +8,15 @@ import {Ingredient} from "../shared/model/ingredient.model";
 @Component({
   selector: 'app-ingredients',
   templateUrl: './ingredients.component.html',
-  styleUrls: ['./ingredients.component.css']
+  styleUrls: ['./ingredients.component.css',
+    './../shared/shared-styles.css']
 })
 export class IngredientsComponent {
   private dialog = inject(MatDialog);
   editable: boolean = false;
-  ingredientTypes: string[] = ['LIQUID', 'DAIRY', 'VEGETABLE', 'FRUIT', 'POWDER'];
-  ingredientType: string = '';
-  ingredientType2: string = '';
-  ingredientUnits: string[] = ['GRAM', 'MILLILITER', 'TABLESPOON', 'TEASPOON', 'CUP'];
-  ingredientUnit: string = '';
-  ingredientUnit2: string = '';
+  //TODO quitar esto
+  ingredientTypes: string[] = ['LIQUID', 'DAIRY', 'VEGETABLE', 'FRUIT', 'POWDER', 'MEAT','GRAIN', 'SEASONING'];
+  ingredientUnits: string[] = ['GRAM', 'MILLILITER', 'TABLESPOON', 'TEASPOON', 'CUP', 'PIECE'];
 
   ingredients: Ingredient[] = [];
 
@@ -34,10 +32,24 @@ export class IngredientsComponent {
     const dialogRef =
       this.dialog.open(CreateIngredientDialogComponent);
 
+    dialogRef.afterClosed().subscribe( result => {
+        console.log("closed dialog");
+        this.getIngredientsByUserId();
+      }
+    );
+
   }
 
-  delete() {
-
+  delete(id: string) {
+    this.ingredientService.delete(id).subscribe(
+      ()=>{
+        console.log("ingrediente eliminado");
+        this.getIngredientsByUserId();
+      },
+      (error)=>{
+        console.error("error");
+      }
+    );
   }
 
   edit() {
@@ -45,6 +57,7 @@ export class IngredientsComponent {
   }
 
   getIngredientsByUserId(): void {
+    //TODO LOGIN USER ID
     this.ingredientService.getIngredientsByUserId("a")
       .subscribe(
         (data: Ingredient[]) => {
@@ -53,7 +66,20 @@ export class IngredientsComponent {
         },
         (error) => {
           console.error("Error al obtener ingredientes:", error);
-          // Manejo de errores aquí
+        }
+      );
+  }
+
+  save(ingredient: Ingredient) {
+    this.ingredientService.update(ingredient.id, ingredient)
+      .subscribe(
+        (data: Ingredient) =>{
+          ingredient = data;
+          console.log("guardado");
+          this.getIngredientsByUserId();
+        },
+        (error) =>{
+          console.error("error");
         }
       );
   }
