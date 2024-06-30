@@ -2,25 +2,22 @@
   <main>
     <button class="new-button" (click)="openCreateDialog()">NEW</button>
     <mat-list role="list">
-      <mat-list-item role="listitem">
+      <mat-list-item *ngFor="let meal of meals" role="listitem">
         <div style="display: flex">
           <div style="display: block" class="list-element">
-            <div style="font-weight: bold">Meal 1</div>
-            <div style = "margin-left: 1%; display: flex" >MAIN</div>
+            <div style="font-weight: bold">{{meal.name}}</div>
+            <div style = "margin-left: 1%; display: flex" >
+              <div style="margin-right: 1%; font-style: italic;">Category: </div>
+              <div>{{meal.category}}</div>
+              <div style="display: flex; margin-left: 3%;">
+                <div style="margin-right: 5%; font-style: italic;">Ingredients: </div>
+                <div *ngFor="let mealIngredient of meal.ingredients">{{mealIngredient.ingredient.name}}, </div>
+              </div>
+            </div>
           </div>
-          <mat-icon fontIcon="search" style="align-self: center" (click)="openMeal()"></mat-icon>
+          <mat-icon fontIcon="search" style="align-self: center" (click)="openMeal(meal)"></mat-icon>
         </div>
-      </mat-list-item>
-      <mat-list-item role="listitem">
-        <div style="display: flex">
-          <div style="display: block" class="list-element">
-            <div style="font-weight: bold">MEAL 2</div>
-            <div style = "margin-left: 1%; display: flex" >DRINK</div>
-          </div>
-          <mat-icon fontIcon="search" style="align-self: center" (click)="openMeal()"></mat-icon>
-        </div>
-      </mat-list-item>
-
+      </mat-list-item >
     </mat-list>
   </main>
 </div>

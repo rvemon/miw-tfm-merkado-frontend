@@ -3,8 +3,6 @@ import {Ingredient} from "../../shared/model/ingredient.model";
 import {IngredientService} from "../ingredient.service";
 import { MatDialogRef } from '@angular/material/dialog';
 
-
-
 @Component({
   selector: 'app-create-ingredient-dialog',
   templateUrl: './create-ingredient-dialog.component.html',

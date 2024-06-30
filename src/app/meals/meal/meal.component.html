@@ -3,17 +3,16 @@
   <main>
     <div>
       <div style="display: flex;">
-        <input type="text" readonly value="Meal 1">
+        <input type="text" [readOnly]="!editable" [(ngModel)]="meal.name">
         <div style="min-width: 14%"></div>
         <button class="edit-button" (click)="edit()">Edit</button>
-        <button class="edit-button" (click)="delete()">Delete</button>
+        <button class="edit-button" (click)="delete(meal.id)">Delete</button>
       </div>
-      <mat-select [(ngModel)]="category">
+      <mat-select [(ngModel)]="meal.category" [disabled]="!editable">
         <mat-option *ngFor="let option of categories" [value]="option">
           {{option}}
         </mat-option>
       </mat-select>
-
       <div>
         <div style="min-width: 100%; margin-bottom: 2%; margin-top: 2%">
           <a style="vertical-align: bottom; font-weight: bold;">Ingredients</a>
@@ -23,44 +22,25 @@
 
         </div>
         <mat-list role="list">
-          <mat-list-item role="listitem">
+          <mat-list-item *ngFor="let mealIngredient of meal.ingredients" role="listitem">
             <div style="display: flex">
               <div style="display: flex" class="list-element">
-                <div style="font-weight: bold">Ingredient 1</div>
-                <div style = "margin-left: 1%; display: flex" >quantity:</div>
-                <div style = "margin-left: 1%; display: flex" >3</div>
+                <div style="font-weight: bold; margin-right: 1%">Name:</div>
+                <div style="min-width: 25%;">{{mealIngredient.ingredient.name}}</div>
+                <div style = "margin-left: 5%; display: flex; font-weight: bold" >quantity:</div>
+                <input type="number" style = "margin-left: 1%; border-width: 0; min-width: 10%; max-width: 10%; display: flex" [(ngModel)]="mealIngredient.quantity" [readOnly]="!editable">
               </div>
               <ng-template [ngIf]="editable">
-                <mat-icon fontIcon="delete" style="align-self: center" (click)="removeIngredient()"></mat-icon>
+                <mat-icon fontIcon="delete" style="align-self: center" (click)="removeIngredient(mealIngredient.id)"></mat-icon>
               </ng-template>
             </div>
           </mat-list-item>
-          <mat-list-item role="listitem">
-            <div style="display: flex">
-              <div style="display: flex" class="list-element">
-                <div style="font-weight: bold">Ingredient 2</div>
-                <div style = "margin-left: 1%; display: flex" >quantity:</div>
-                <div style = "margin-left: 1%; display: flex" >1</div>
-              </div>
-              <ng-template [ngIf]="editable">
-                <mat-icon fontIcon="delete" style="align-self: center" (click)="removeIngredient()"></mat-icon>
-              </ng-template>
-            </div>
-          </mat-list-item>
-          <mat-list-item role="listitem">
-            <div style="display: flex">
-              <div style="display: flex" class="list-element">
-                <div style="font-weight: bold">Ingredient 3</div>
-                <div style = "margin-left: 1%; display: flex" >quantity:</div>
-                <div style = "margin-left: 1%; display: flex" >4</div>
-              </div>
-              <ng-template [ngIf]="editable">
-                <mat-icon fontIcon="delete" style="align-self: center" (click)="removeIngredient()"></mat-icon>
-              </ng-template>
-            </div>
-          </mat-list-item>
-
         </mat-list>
+        <ng-template [ngIf]="editable">
+          <div class="save-button">
+            <button style="min-width: 33%" (click)="save()">Save</button>
+          </div>
+        </ng-template>
       </div>
     </div>
   </main>

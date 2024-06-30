@@ -58,7 +58,7 @@ export class IngredientsComponent {
 
   getIngredientsByUserId(): void {
     //TODO LOGIN USER ID
-    this.ingredientService.getIngredientsByUserId("a")
+    this.ingredientService.getIngredientsByUserId("1")
       .subscribe(
         (data: Ingredient[]) => {
           this.ingredients = data;
