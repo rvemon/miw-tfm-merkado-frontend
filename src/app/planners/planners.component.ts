@@ -1,9 +1,9 @@
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import {MatDialog} from "@angular/material/dialog";
-import {CreatePlannerDialogComponent, DialogData, Item} from "./create-planner-dialog/create-planner-dialog.component";
-
-
+import {CreatePlannerDialogComponent} from "./create-planner-dialog/create-planner-dialog.component";
+import {PlannerService} from "./planner.service";
+import {Planner} from "../shared/model/planner.model";
 
 @Component({
   selector: 'app-planners',
@@ -11,35 +11,36 @@ import {CreatePlannerDialogComponent, DialogData, Item} from "./create-planner-d
   styleUrls: ['./planners.component.css'],
 })
 export class PlannersComponent {
-  selectedItems: Item[] = [];
+  planners: Planner[] = [];
   private dialog = inject(MatDialog);
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private plannerService: PlannerService) {
   }
 
-  openPlanner() {
-    this.router.navigate(['planner']);
+  ngOnInit(){
+    this.getPlannersByUserId("1");
   }
 
-  openCreateDialog(){
-    const dialogRef =
-      this.dialog.open(CreatePlannerDialogComponent,
-        {data: {items: this.getItems(), name: '', description: ''}
-        });
-
-    dialogRef.afterClosed().subscribe((result: Item[] | undefined) => {
-      if (result) {
-        this.selectedItems = result;
+  getPlannersByUserId(id:string){
+    //TODO login user
+    this.plannerService.getPlannersByUserId(id).subscribe(
+      (data: Planner[])=>{
+        this.planners = data;
+        console.log("planners obtained", this.planners);
+      },
+      (error)=>{
+        console.log("error");
       }
-    });
+    );
   }
 
-  getItems(): Item[] {
-    return [
-      { id: 1, name: 'Item 1' },
-      { id: 2, name: 'Item 2' },
-      { id: 3, name: 'Item 3' },
-      // Agrega más elementos según sea necesario
-    ];
+  openPlanner(planner: Planner) {
+    this.router.navigate(['planner'], {state: {planner}});
   }
+
+  openCreateDialog() {
+    const dialogRef =
+      this.dialog.open(CreatePlannerDialogComponent);
+  }
+
 }

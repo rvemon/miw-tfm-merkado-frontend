@@ -4,6 +4,7 @@ import {Observable} from "rxjs";
 import {EndPoints} from "../shared/end-points";
 import {Planner} from "../shared/model/planner.model";
 import {DailyMenu} from "../shared/model/dailyMenu.model";
+import {ShoppingItem} from "../shared/model/shoppingItem.model";
 
 @Injectable({
   providedIn: 'root'
@@ -12,11 +13,11 @@ export class PlannerService{
   constructor(private http: HttpClient) {
   }
 
-  getPlannersByUserId():Observable<Planner[]>{
+  getPlannersByUserId(id: string):Observable<Planner[]>{
     return this.http.get<Planner[]>('http://localhost:8080/planners/userid/1')
   }
 
-  getDailyMenu(id: string):Observable<Planner>{
+  getPlanner(id: string):Observable<Planner>{
     return this.http.get<Planner>('http://localhost:8080/planners/'+id)
   }
 
@@ -34,4 +35,7 @@ export class PlannerService{
   }
 
 
+  getShoppingListByPlannerId(id: string):Observable<ShoppingItem[]> {
+    return this.http.get<ShoppingItem[]>('http://localhost:8080/planners/'+ id + '/shopping-list')
+  }
 }

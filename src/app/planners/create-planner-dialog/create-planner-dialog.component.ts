@@ -1,13 +1,11 @@
-import { Component, Inject } from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-
-export interface Item {
-  id: number;
-  name: string;
-}
-export interface DialogData {
-  items: Item[];
-}
+import { Component } from '@angular/core';
+import { MatDialogRef} from '@angular/material/dialog';
+import {DailyMenu} from "../../shared/model/dailyMenu.model";
+import {PlannerService} from "../planner.service";
+import {Router} from "@angular/router";
+import {DailymenuService} from "../../dailymenus/dailymenu.service";
+import {MatListOption} from "@angular/material/list";
+import {Planner} from "../../shared/model/planner.model";
 
 @Component({
   selector: 'app-create-planner-dialog',
@@ -19,20 +17,40 @@ export interface DialogData {
 export class CreatePlannerDialogComponent {
   name: string = '';
   description: string = '';
-  openDailyMenus: boolean = false;
+  dailyMenuList: DailyMenu[] = [];
 
   constructor(
     public dialogRef: MatDialogRef<CreatePlannerDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData
-  ) {
+    private plannerService: PlannerService,
+    private router: Router,
+    private dailyMenuService: DailymenuService) {
+    this.getDailyMenus("1");
   }
 
-  createPlanner(selectedOptions: any) {
-    const selectedItems = selectedOptions.map((option: any) => option.value);
-
-    //una vez tengo esto puedo crear el Planner
-    this.dialogRef.close(selectedItems);
+  getDailyMenus(id:string){
+    this.dailyMenuService.getDailyMenuByUserId("1").subscribe(
+      (data: DailyMenu[])=>{
+        this.dailyMenuList = data;
+      }
+    );
   }
 
-  protected readonly close = close;
+  createDailyMenu(selectedMeals: MatListOption[]) {
+    const selectedItems
+      = selectedMeals
+      .map((option: any) => option.value as DailyMenu);
+    let newPlanner: Planner = {
+      id: "0",
+      userId: "1",
+      description: this.description,
+      name: this.name,
+      dailyMenus: selectedItems
+    }
+    this.plannerService.create(newPlanner).subscribe(
+      (planner: Planner)=>{
+        this.router.navigate(['planner'], {state: {planner}});
+        this.dialogRef.close();
+      }
+    );
+  }
 }

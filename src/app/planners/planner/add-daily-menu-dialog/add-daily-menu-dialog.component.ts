@@ -1,37 +1,37 @@
 import {Component, Inject} from '@angular/core';
 import {DailyMenu} from "../../../shared/model/dailyMenu.model";
-import {Meal} from "../../../shared/model/meal.model";
-import {MealService} from "../../../meals/meal.service";
 import {Router} from "@angular/router";
 import {DailymenuService} from "../../../dailymenus/dailymenu.service";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
+import {Planner} from "../../../shared/model/planner.model";
+import {PlannerService} from "../../planner.service";
 
 @Component({
   selector: 'app-add-daily-menu-dialog',
   templateUrl: './add-daily-menu-dialog.component.html',
-  styleUrls: ['./add-daily-menu-dialog.component.css']
+  styleUrls: ['./add-daily-menu-dialog.component.css', './../../../shared/shared-styles.css']
 })
 export class AddDailyMenuDialogComponent {
-  dailyMenu!: DailyMenu;
-  meals!:Meal[];
-  meal: Meal | undefined;
+  planner!: Planner;
+  dailyMenus!:DailyMenu[];
+  dailyMenu: DailyMenu | undefined;
 
   constructor(
-    private mealService: MealService,
+    private plannerService: PlannerService,
     private router: Router,
     private dailyMenuService: DailymenuService,
     private dialogRef: MatDialogRef<AddDailyMenuDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DailyMenu
+    @Inject(MAT_DIALOG_DATA) public data: Planner
   ) {
     console.log("data:",data);
-    this.dailyMenu = data;
-    this.getMeals(this.dailyMenu.userId);
+    this.planner = data;
+    this.getDailyMenus(this.planner.userId);
   }
 
-  getMeals(id: string){
-    this.mealService.getMealsByUserId(id).subscribe(
-      (data: Meal[])=>{
-        this.meals = data;
+  getDailyMenus(id: string){
+    this.dailyMenuService.getDailyMenuByUserId(id).subscribe(
+      (data: DailyMenu[])=>{
+        this.dailyMenus = data;
       },
       (error)=>{
         console.log("error: ",error);
@@ -39,10 +39,10 @@ export class AddDailyMenuDialogComponent {
     );
   }
 
-  addMeal(){
-    if (this.meal) {
-      this.dailyMenu.meals.push(this.meal);
-      this.dailyMenuService.update(this.dailyMenu.id, this.dailyMenu).subscribe(
+  addDailyMenu(){
+    if (this.dailyMenu) {
+      this.planner.dailyMenus.push(this.dailyMenu);
+      this.plannerService.update(this.planner.id, this.planner).subscribe(
         ()=>{
         },
         (error)=>{

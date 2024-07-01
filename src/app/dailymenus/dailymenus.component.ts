@@ -1,7 +1,7 @@
 import {Component, inject} from '@angular/core';
 import {Router} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
-import {CreateDailyMenuDialogComponent, Item} from "./create-daily-menu-dialog/create-daily-menu-dialog.component";
+import {CreateDailyMenuDialogComponent} from "./create-daily-menu-dialog/create-daily-menu-dialog.component";
 import {DailyMenu} from "../shared/model/dailyMenu.model";
 import {DailymenuService} from "./dailymenu.service";
 
@@ -11,7 +11,6 @@ import {DailymenuService} from "./dailymenu.service";
   styleUrls: ['./dailymenus.component.css']
 })
 export class DailymenusComponent {
-  selectedItems: Item[] = [];
   private dialog = inject(MatDialog);
 
   dailyMenus: DailyMenu[] = [];
@@ -44,14 +43,5 @@ export class DailymenusComponent {
   openCreateDialog() {
     const dialogRef =
       this.dialog.open(CreateDailyMenuDialogComponent);
-  }
-
-  getItems(): Item[] {
-    return [
-      { id: 1, name: 'Item 1' },
-      { id: 2, name: 'Item 2' },
-      { id: 3, name: 'Item 3' },
-      // Agrega más elementos según sea necesario
-    ];
   }
 }

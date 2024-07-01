@@ -7,5 +7,4 @@ export interface Planner{
   name: string;
   description: string;
   dailyMenus: DailyMenu[];
-  shoppingList: ShoppingItem[];
 }

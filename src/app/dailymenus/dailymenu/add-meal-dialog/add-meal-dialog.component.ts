@@ -9,7 +9,7 @@ import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 @Component({
   selector: 'app-add-meal-dialog',
   templateUrl: './add-meal-dialog.component.html',
-  styleUrls: ['./add-meal-dialog.component.css']
+  styleUrls: ['./add-meal-dialog.component.css', './../../../shared/shared-styles.css']
 })
 export class AddMealDialogComponent {
 

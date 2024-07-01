@@ -1,19 +1,11 @@
-import {Component, Inject} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import {Component} from '@angular/core';
+import {MatDialogRef} from '@angular/material/dialog';
 import {Meal} from "../../shared/model/meal.model";
 import {DailymenuService} from "../dailymenu.service";
 import {MealService} from "../../meals/meal.service";
 import {DailyMenu} from "../../shared/model/dailyMenu.model";
 import {Router} from "@angular/router";
 import {MatListOption} from "@angular/material/list";
-
-export interface Item {
-  id: number;
-  name: string;
-}
-export interface DialogData {
-  items: Item[];
-}
 
 @Component({
   selector: 'app-create-daily-menu-dialog',
@@ -32,8 +24,7 @@ export class CreateDailyMenuDialogComponent {
     public dialogRef: MatDialogRef<CreateDailyMenuDialogComponent>,
     private dailyMenuService: DailymenuService,
     private router: Router,
-    private mealService: MealService,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData
+    private mealService: MealService
   ) {
     this.getMeals("1");
   }

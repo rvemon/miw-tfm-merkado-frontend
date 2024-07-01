@@ -1,0 +1,19 @@
+<div class="dialog-style" style="text-align: center">
+  <h2>Shopping List</h2>
+  <mat-dialog-content>
+    <mat-list>
+      <mat-list-item *ngFor="let item of shoppingList">
+        <div style="text-align: left">
+          {{ item.ingredient.name }} ({{item.ingredient.measurement}}) x {{ item.quantity }}
+        </div>
+      </mat-list-item>
+    </mat-list>
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <button class="dialog-button" mat-button [mat-dialog-close]="" cdkFocusInitial>Accept</button>
+  </mat-dialog-actions>
+</div>
+
+
+

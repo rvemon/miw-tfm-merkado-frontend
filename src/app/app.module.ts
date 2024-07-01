@@ -36,6 +36,7 @@ import { AddIngredientDialogComponent } from './meals/meal/add-ingredient-dialog
 import {MatTooltipModule} from "@angular/material/tooltip";
 import { AddDailyMenuDialogComponent } from './planners/planner/add-daily-menu-dialog/add-daily-menu-dialog.component';
 import { AddMealDialogComponent } from './dailymenus/dailymenu/add-meal-dialog/add-meal-dialog.component';
+import { ShoppingListDialogComponent } from './planners/planner/shopping-list-dialog/shopping-list-dialog.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { AddMealDialogComponent } from './dailymenus/dailymenu/add-meal-dialog/a
     CreateIngredientDialogComponent,
     AddIngredientDialogComponent,
     AddDailyMenuDialogComponent,
-    AddMealDialogComponent
+    AddMealDialogComponent,
+    ShoppingListDialogComponent
   ],
     imports: [
         BrowserModule,

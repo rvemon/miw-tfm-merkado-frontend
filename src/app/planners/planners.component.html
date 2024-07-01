@@ -2,31 +2,22 @@
   <main>
     <button class="new-button" (click)="openCreateDialog()">NEW</button>
     <mat-list role="list">
-      <mat-list-item role="listitem">
+      <mat-list-item *ngFor="let planner of planners" role="listitem">
         <div style="display: flex">
           <div style="display: block" class="list-element">
-            <div style="font-weight: bold">Planner 1</div>
-            <div style = "margin-left: 1%; display: flex" >Descripción</div>
+            <div style="font-weight: bold">{{planner.name}}</div>
+            <div style = "margin-left: 1%; display: flex" >
+              <div style="margin-right: 1%; font-style: italic;">Description: </div>
+              <div>{{planner.description}}</div>
+              <div style="display: flex; margin-left: 3%;">
+                <div style="margin-right: 5%; font-style: italic;">Daily Menus: </div>
+                <div *ngFor="let dailyMenu of planner.dailyMenus">{{dailyMenu.name}}, </div>
+              </div>
+            </div>
           </div>
-          <mat-icon fontIcon="search" style="align-self: center" (click)="openPlanner()"></mat-icon>
+          <mat-icon fontIcon="search" style="align-self: center" (click)="openPlanner(planner)"></mat-icon>
         </div>
-      </mat-list-item>
-      <mat-list-item role="listitem">
-        <div style="display: flex">
-          <div style="display: block" class="list-element">
-            <div style="font-weight: bold">Planner 2</div>
-            <div style = "margin-left: 1%; display: flex" >Descripción</div>
-          </div>
-          <mat-icon fontIcon="search" style="align-self: center"></mat-icon>
-        </div>
-      </mat-list-item>
-
+      </mat-list-item >
     </mat-list>
-    <!--<div *ngIf="selectedItems.length">
-      <h3>Selected Items:</h3>
-      <ul>
-        <li *ngFor="let item of selectedItems">{{ item.name }}</li>
-      </ul>
-    </div>-->
   </main>
 </div>
