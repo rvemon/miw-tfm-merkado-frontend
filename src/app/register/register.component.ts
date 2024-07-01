@@ -3,6 +3,8 @@ import { AbstractControl, FormBuilder, ValidatorFn, Validators } from '@angular/
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from '../user.service';
 import { Router } from '@angular/router';
+import {UsersService} from "../users.service";
+import {UserRequest} from "../shared/model/userRequest.model";
 
 @Component({
   selector: 'app-register',
@@ -13,25 +15,24 @@ import { Router } from '@angular/router';
 export class RegisterComponent implements OnInit{
   usernameUniqueness = false;
   constructor(private builder:FormBuilder, private toastr: ToastrService,
-              private service:UserService, private router: Router){}
+              private service:UserService, private router: Router,
+              private usersService: UsersService){}
 
   ngOnInit(){
-    if(this.checkToken()){
-      console.log("automatic login");
-      this.toastr.success('Login Successfull.');
-      this.router.navigate(['planners']);
-    };
+    if(sessionStorage.getItem('id')!=null){
+      this.router.navigate(['home']);
+    }
 
   }
 
   registerform=this.builder.group({
-    username: this.builder.control('', Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(8)])),
+    //username: this.builder.control('', Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(8)])),
     password: this.builder.control('', Validators.compose([Validators.required, Validators.minLength(4)])),
     passwordConfirm: this.builder.control('', Validators.compose([Validators.required, Validators.minLength(4)])),
     email: this.builder.control('', Validators.compose([Validators.required, Validators.email]))
   });
 
-  checkUniqueness(){
+  /*checkUniqueness(){
     if(this.registerform.value.username){
       let username = this.registerform.value.username;
       this.service.searchUser(username)
@@ -46,26 +47,34 @@ export class RegisterComponent implements OnInit{
         );
     }
 
-  }
+  }*/
 
   checkToken(){
     return sessionStorage.getItem('token')  && sessionStorage.getItem('username');
   }
 
   register(){
-    if(this.registerform.valid && this.usernameUniqueness){
-      this.service.createUser(this.registerform.value).subscribe(res =>{
-        this.toastr.success('User created','Registered successfully.');
-        this.router.navigate(['login']);
-      });
+    if(this.registerform.valid){
+      const userRequest: UserRequest={
+        email: this.registerform.value.email as string,
+        password: this.registerform.value.password as string
+      }
+      this.usersService.createUser(userRequest).subscribe(
+        ()=>{
+          this.toastr.success('User created','Registered successfully.');
+          this.router.navigate(['login']);
+        }
+      );
     }
     else{
-      if(!this.usernameUniqueness){
+      this.toastr.warning('Something went wrong. Please enter valid data.');
+
+      /*if(!this.usernameUniqueness){
         this.toastr.warning('Username already exist');
       }
       else{
         this.toastr.warning('Something went wrong. Please enter valid data.');
-      }
+      }*/
 
     }
   }
