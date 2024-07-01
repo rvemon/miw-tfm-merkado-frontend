@@ -3,8 +3,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {Observable} from "rxjs";
 import {EndPoints} from "../shared/end-points";
 import {Meal} from "../shared/model/meal.model";
-import {MealIngredient} from "../shared/model/mealIngredient.model";
-import {Ingredient} from "../shared/model/ingredient.model";
 
 @Injectable({
   providedIn: 'root'

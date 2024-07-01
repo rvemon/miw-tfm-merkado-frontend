@@ -2,7 +2,8 @@ import {Component, inject} from '@angular/core';
 import {Router} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
 import {CreateDailyMenuDialogComponent, Item} from "./create-daily-menu-dialog/create-daily-menu-dialog.component";
-
+import {DailyMenu} from "../shared/model/dailyMenu.model";
+import {DailymenuService} from "./dailymenu.service";
 
 @Component({
   selector: 'app-dailymenus',
@@ -13,24 +14,36 @@ export class DailymenusComponent {
   selectedItems: Item[] = [];
   private dialog = inject(MatDialog);
 
-  constructor(private router: Router) {
+  dailyMenus: DailyMenu[] = [];
+
+
+  constructor(private router: Router, private dailyMenuService: DailymenuService) {
   }
 
-  openDailyMenu() {
-    this.router.navigate(['dailymenu']);
+  ngOnInit(){
+    this.getDailyMenusByUserId("1");
+  }
+
+  getDailyMenusByUserId(id:string){
+    //TODO login user
+    this.dailyMenuService.getDailyMenuByUserId(id).subscribe(
+      (data: DailyMenu[])=>{
+        this.dailyMenus = data;
+        console.log("dailyMenusobtained", this.dailyMenus);
+      },
+      (error)=>{
+        console.log("error");
+      }
+    );
+  }
+
+  openDailyMenu(dailyMenu: DailyMenu) {
+    this.router.navigate(['dailymenu'], {state: {dailyMenu}});
   }
 
   openCreateDialog() {
     const dialogRef =
-      this.dialog.open(CreateDailyMenuDialogComponent,
-        {data: {items: this.getItems(), name: '', day: ''}
-        });
-
-    dialogRef.afterClosed().subscribe((result: Item[] | undefined) => {
-      if (result) {
-        this.selectedItems = result;
-      }
-    });
+      this.dialog.open(CreateDailyMenuDialogComponent);
   }
 
   getItems(): Item[] {

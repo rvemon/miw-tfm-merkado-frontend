@@ -63,7 +63,6 @@ export class CreateMealDialogComponent {
         this.dialogRef.close();
       }
     );
-
   }
 
 }

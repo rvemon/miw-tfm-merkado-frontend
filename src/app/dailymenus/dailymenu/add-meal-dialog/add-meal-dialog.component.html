@@ -1,0 +1,21 @@
+<div class="dialog-style">
+  <h2 mat-dialog-title>Add Ingredient</h2>
+  <mat-dialog-content>
+    <div style="display: flex; flex-direction: column; gap: 1%;">
+      <label>Meal</label>
+      <mat-form-field style="width: 100%;">
+        <mat-select [(ngModel)]="meal">
+          <mat-option *ngFor="let option of meals" [value]="option">
+            {{option.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button class="dialog-button" mat-button (click)="addMeal()">Confirm</button>
+    <button class="dialog-button" mat-button [mat-dialog-close]="" cdkFocusInitial>Cancel</button>
+  </mat-dialog-actions>
+</div>
+
+

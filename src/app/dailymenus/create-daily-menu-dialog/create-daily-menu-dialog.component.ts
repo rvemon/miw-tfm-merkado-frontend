@@ -1,5 +1,11 @@
 import {Component, Inject} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import {Meal} from "../../shared/model/meal.model";
+import {DailymenuService} from "../dailymenu.service";
+import {MealService} from "../../meals/meal.service";
+import {DailyMenu} from "../../shared/model/dailyMenu.model";
+import {Router} from "@angular/router";
+import {MatListOption} from "@angular/material/list";
 
 export interface Item {
   id: number;
@@ -19,19 +25,44 @@ export class CreateDailyMenuDialogComponent {
   name: string = '';
   day: string = '';
   days: string[] = ['MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY', 'SUNDAY']
-  openDailyMenus: boolean = false;
+  mealList: Meal[] = [];
+
 
   constructor(
     public dialogRef: MatDialogRef<CreateDailyMenuDialogComponent>,
+    private dailyMenuService: DailymenuService,
+    private router: Router,
+    private mealService: MealService,
     @Inject(MAT_DIALOG_DATA) public data: DialogData
   ) {
+    this.getMeals("1");
   }
 
-  createDailyMenu(selectedOptions: any) {
-    const selectedItems = selectedOptions.map((option: any) => option.value);
+  getMeals(id:string){
+    this.mealService.getMealsByUserId("1").subscribe(
+      (data: Meal[])=>{
+        this.mealList = data;
+      }
+    );
+  }
 
-    //una vez tengo esto puedo crear el Planner
-    this.dialogRef.close(selectedItems);
+  createDailyMenu(selectedMeals: MatListOption[]) {
+    const selectedItems
+      = selectedMeals
+      .map((option: any) => option.value as Meal);
+    let newDailyMenu: DailyMenu = {
+      id: "0",
+      userId: "1",
+      day: this.day,
+      name: this.name,
+      meals: selectedItems
+    }
+    this.dailyMenuService.create(newDailyMenu).subscribe(
+      (dailyMenu: DailyMenu)=>{
+        this.router.navigate(['dailymenu'], {state: {dailyMenu}});
+        this.dialogRef.close();
+      }
+    );
   }
 
 }

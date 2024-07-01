@@ -34,6 +34,8 @@ import { DailymenuComponent } from './dailymenus/dailymenu/dailymenu.component';
 import { CreateIngredientDialogComponent } from './ingredients/create-ingredient-dialog/create-ingredient-dialog.component';
 import { AddIngredientDialogComponent } from './meals/meal/add-ingredient-dialog/add-ingredient-dialog.component';
 import {MatTooltipModule} from "@angular/material/tooltip";
+import { AddDailyMenuDialogComponent } from './planners/planner/add-daily-menu-dialog/add-daily-menu-dialog.component';
+import { AddMealDialogComponent } from './dailymenus/dailymenu/add-meal-dialog/add-meal-dialog.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +55,9 @@ import {MatTooltipModule} from "@angular/material/tooltip";
     MealComponent,
     DailymenuComponent,
     CreateIngredientDialogComponent,
-    AddIngredientDialogComponent
+    AddIngredientDialogComponent,
+    AddDailyMenuDialogComponent,
+    AddMealDialogComponent
   ],
     imports: [
         BrowserModule,

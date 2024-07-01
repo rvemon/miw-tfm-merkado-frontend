@@ -37,12 +37,6 @@ export class MealsComponent{
   openCreateDialog() {
     const dialogRef =
       this.dialog.open(CreateMealDialogComponent);
-
-    /*dialogRef.afterClosed().subscribe((result: Item[] | undefined) => {
-      if (result) {
-        this.selectedItems = result;
-      }
-    });*/
   }
 
 
