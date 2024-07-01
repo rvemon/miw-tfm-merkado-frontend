@@ -12,7 +12,7 @@ export class IngredientService{
   }
 
   getIngredientsByUserId(id: string): Observable<Ingredient[]>{
-    return this.http.get<Ingredient[]>('http://localhost:8080/ingredients/userid/1');
+    return this.http.get<Ingredient[]>('http://localhost:8080/ingredients/userid/'+ id);
   }
 
   update(id: string, ingredient: Ingredient):Observable<Ingredient>{

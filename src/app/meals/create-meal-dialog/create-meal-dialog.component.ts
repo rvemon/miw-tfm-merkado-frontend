@@ -20,17 +20,19 @@ export class CreateMealDialogComponent {
   categories: string[] = ['APPETIZER', 'SOUP', 'SALAD', 'MAIN', 'DESSERT', 'DRINK'];
   ingredients: Ingredient[] =[];
   mealIngredients: MealIngredient[] = [];
+  userId: string = '1';
 
   constructor(
     public dialogRef: MatDialogRef<CreateMealDialogComponent>,
     private mealService: MealService,
     private router: Router,
     private ingredientService: IngredientService) {
-    this.getIngredients("1");
+    this.userId = sessionStorage.getItem('id') as string;
+    this.getIngredients(this.userId);
   }
 
-  getIngredients(id:String){
-    this.ingredientService.getIngredientsByUserId("1").subscribe(
+  getIngredients(id:string){
+    this.ingredientService.getIngredientsByUserId(id).subscribe(
       (data: Ingredient[])=>{
         this.ingredients = data;
         this.createMealIngredients();
@@ -52,7 +54,7 @@ export class CreateMealDialogComponent {
       .map((option: any) => option.value as MealIngredient);
     let newMeal: Meal = {
       id: "0",
-      userId: "1",
+      userId: this.userId,
       category: this.category,
       name: this.name,
       ingredients: selectedItems

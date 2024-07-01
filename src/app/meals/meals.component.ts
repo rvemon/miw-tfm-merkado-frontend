@@ -1,4 +1,4 @@
-import {Component, inject, Inject} from '@angular/core';
+import {Component, inject, Inject, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
 import {CreateMealDialogComponent} from "./create-meal-dialog/create-meal-dialog.component";
@@ -10,15 +10,25 @@ import {Meal} from "../shared/model/meal.model";
   templateUrl: './meals.component.html',
   styleUrls: ['./meals.component.css']
 })
-export class MealsComponent{
+export class MealsComponent implements OnInit{
   meals: Meal[] = [];
+  userId: string = '1';
   private dialog = inject(MatDialog);
 
   constructor(private router: Router, private mealService: MealService) {
   }
 
-  ngOnInit(): void {
-    this.getMealsByUserId("1");
+
+  ngOnInit(){
+    if(sessionStorage.getItem('id')!=null){
+      this.userId = sessionStorage.getItem('id') as string;
+      console.log("userId", this.userId);
+      this.getMealsByUserId(this.userId);
+    }
+    else{
+      this.router.navigate(['login']);
+    }
+
   }
 
   getMealsByUserId(id:string){

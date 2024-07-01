@@ -12,15 +12,24 @@ import {DailymenuService} from "./dailymenu.service";
 })
 export class DailymenusComponent {
   private dialog = inject(MatDialog);
-
+  userId: string = '1';
   dailyMenus: DailyMenu[] = [];
 
 
   constructor(private router: Router, private dailyMenuService: DailymenuService) {
   }
 
+
   ngOnInit(){
-    this.getDailyMenusByUserId("1");
+    if(sessionStorage.getItem('id')!=null){
+      this.userId = sessionStorage.getItem('id') as string;
+      console.log("userId", this.userId);
+      this.getDailyMenusByUserId(this.userId);
+    }
+    else{
+      this.router.navigate(['login']);
+    }
+
   }
 
   getDailyMenusByUserId(id:string){

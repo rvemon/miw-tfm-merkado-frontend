@@ -19,13 +19,22 @@ export class IngredientsComponent {
   ingredientUnits: string[] = ['GRAM', 'MILLILITER', 'TABLESPOON', 'TEASPOON', 'CUP', 'PIECE'];
 
   ingredients: Ingredient[] = [];
+  userId: string = '1';
 
 
   constructor(private router: Router, private ingredientService: IngredientService) {
   }
 
-  ngOnInit(): void {
-    this.getIngredientsByUserId();
+  ngOnInit(){
+    if(sessionStorage.getItem('id')!=null){
+      this.userId = sessionStorage.getItem('id') as string;
+      console.log("userId", this.userId);
+      this.getIngredientsByUserId(this.userId);
+    }
+    else{
+      this.router.navigate(['login']);
+    }
+
   }
 
   openCreateDialog(){
@@ -34,7 +43,7 @@ export class IngredientsComponent {
 
     dialogRef.afterClosed().subscribe( result => {
         console.log("closed dialog");
-        this.getIngredientsByUserId();
+        this.getIngredientsByUserId(this.userId);
       }
     );
 
@@ -44,7 +53,7 @@ export class IngredientsComponent {
     this.ingredientService.delete(id).subscribe(
       ()=>{
         console.log("ingrediente eliminado");
-        this.getIngredientsByUserId();
+        this.getIngredientsByUserId(this.userId);
       },
       (error)=>{
         console.error("error");
@@ -56,9 +65,9 @@ export class IngredientsComponent {
     this.editable= !this.editable;
   }
 
-  getIngredientsByUserId(): void {
+  getIngredientsByUserId(id:string): void {
     //TODO LOGIN USER ID
-    this.ingredientService.getIngredientsByUserId("1")
+    this.ingredientService.getIngredientsByUserId(id)
       .subscribe(
         (data: Ingredient[]) => {
           this.ingredients = data;
@@ -76,7 +85,7 @@ export class IngredientsComponent {
         (data: Ingredient) =>{
           ingredient = data;
           console.log("guardado");
-          this.getIngredientsByUserId();
+          this.getIngredientsByUserId(this.userId);
         },
         (error) =>{
           console.error("error");

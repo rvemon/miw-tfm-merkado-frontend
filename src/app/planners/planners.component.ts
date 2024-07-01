@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import {MatDialog} from "@angular/material/dialog";
 import {CreatePlannerDialogComponent} from "./create-planner-dialog/create-planner-dialog.component";
@@ -10,15 +10,24 @@ import {Planner} from "../shared/model/planner.model";
   templateUrl: './planners.component.html',
   styleUrls: ['./planners.component.css'],
 })
-export class PlannersComponent {
+export class PlannersComponent implements OnInit{
   planners: Planner[] = [];
+  userId: string = '1';
   private dialog = inject(MatDialog);
 
   constructor(private router: Router, private plannerService: PlannerService) {
   }
 
   ngOnInit(){
-    this.getPlannersByUserId("1");
+    if(sessionStorage.getItem('id')!=null){
+      this.userId = sessionStorage.getItem('id') as string;
+      console.log("userId", this.userId);
+      this.getPlannersByUserId(this.userId);
+    }
+    else{
+      this.router.navigate(['login']);
+    }
+
   }
 
   getPlannersByUserId(id:string){

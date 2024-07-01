@@ -14,14 +14,15 @@ export class CreateIngredientDialogComponent{
   ingredientTypes: string[] = ['LIQUID', 'DAIRY', 'VEGETABLE', 'FRUIT', 'POWDER'];
 
   ingredientUnits: string[] = ['GRAM', 'MILLILITER', 'TABLESPOON', 'TEASPOON', 'CUP'];
-
+  userId: string = '1';
   constructor(
     private dialogRef: MatDialogRef<CreateIngredientDialogComponent>,
     private ingredientService: IngredientService
   ) {
+    this.userId = sessionStorage.getItem('id') as string;
     this.newIngredient = {
       id: '',
-      userId: '1',
+      userId: this.userId,
       name: '',
       ingredientType: '',
       measurement: ''

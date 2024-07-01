@@ -14,7 +14,7 @@ export class PlannerService{
   }
 
   getPlannersByUserId(id: string):Observable<Planner[]>{
-    return this.http.get<Planner[]>('http://localhost:8080/planners/userid/1')
+    return this.http.get<Planner[]>('http://localhost:8080/planners/userid/'+id);
   }
 
   getPlanner(id: string):Observable<Planner>{

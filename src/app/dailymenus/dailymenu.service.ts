@@ -12,7 +12,7 @@ export class DailymenuService{
   constructor(private http: HttpClient) {
   }
   getDailyMenuByUserId(id: string):Observable<DailyMenu[]>{
-    return this.http.get<DailyMenu[]>('http://localhost:8080/daily-menus/userid/1')
+    return this.http.get<DailyMenu[]>('http://localhost:8080/daily-menus/userid/' + id);
   }
 
   getDailyMenu(id: string):Observable<DailyMenu>{

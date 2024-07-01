@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, ValidatorFn, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { UfobattleService } from '../ufobattle.service';
+import { UserService } from '../user.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 export class RegisterComponent implements OnInit{
   usernameUniqueness = false;
   constructor(private builder:FormBuilder, private toastr: ToastrService,
-    private service:UfobattleService, private router: Router){}
+              private service:UserService, private router: Router){}
 
   ngOnInit(){
     if(this.checkToken()){

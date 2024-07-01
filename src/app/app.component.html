@@ -30,10 +30,15 @@
     </nav>
   </header>
 
-  <div style="display: flex; float: right; margin-right: 4%;">
+  <div style="display: flex; float: right; margin-right: 4%;" *ngIf="!loggedIn">
     <a style="text-align: center" class="nav-link"  routerLink="login" routerLinkActive="active">Login</a>
     <a style="text-align: center" class="nav-link" routerLink="register" routerLinkActive="active">Register</a>
   </div>
+  <div style="display: flex; float: right; margin-right: 4%;" *ngIf="loggedIn">
+    <a style="text-align: center" class="nav-link" >ricardo@hotmail.com</a>
+    <button style="text-align: center" class="logout-button" (click)="logout()" >Logout</button>
+  </div>
+
 
   <section class="container" id="contenedor">
     <router-outlet></router-outlet>

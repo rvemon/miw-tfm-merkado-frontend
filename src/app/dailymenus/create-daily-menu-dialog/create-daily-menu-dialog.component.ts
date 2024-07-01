@@ -18,6 +18,7 @@ export class CreateDailyMenuDialogComponent {
   day: string = '';
   days: string[] = ['MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY', 'SUNDAY']
   mealList: Meal[] = [];
+  userId: string = '1';
 
 
   constructor(
@@ -26,11 +27,12 @@ export class CreateDailyMenuDialogComponent {
     private router: Router,
     private mealService: MealService
   ) {
-    this.getMeals("1");
+    this.userId = sessionStorage.getItem('id') as string;
+    this.getMeals(this.userId);
   }
 
   getMeals(id:string){
-    this.mealService.getMealsByUserId("1").subscribe(
+    this.mealService.getMealsByUserId(id).subscribe(
       (data: Meal[])=>{
         this.mealList = data;
       }
@@ -43,7 +45,7 @@ export class CreateDailyMenuDialogComponent {
       .map((option: any) => option.value as Meal);
     let newDailyMenu: DailyMenu = {
       id: "0",
-      userId: "1",
+      userId: this.userId,
       day: this.day,
       name: this.name,
       meals: selectedItems

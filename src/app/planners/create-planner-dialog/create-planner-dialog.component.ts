@@ -18,17 +18,19 @@ export class CreatePlannerDialogComponent {
   name: string = '';
   description: string = '';
   dailyMenuList: DailyMenu[] = [];
+  userId:string = '1';
 
   constructor(
     public dialogRef: MatDialogRef<CreatePlannerDialogComponent>,
     private plannerService: PlannerService,
     private router: Router,
     private dailyMenuService: DailymenuService) {
-    this.getDailyMenus("1");
+    this.userId = sessionStorage.getItem('id') as string;
+    this.getDailyMenus(this.userId);
   }
 
   getDailyMenus(id:string){
-    this.dailyMenuService.getDailyMenuByUserId("1").subscribe(
+    this.dailyMenuService.getDailyMenuByUserId(this.userId).subscribe(
       (data: DailyMenu[])=>{
         this.dailyMenuList = data;
       }
@@ -41,7 +43,7 @@ export class CreatePlannerDialogComponent {
       .map((option: any) => option.value as DailyMenu);
     let newPlanner: Planner = {
       id: "0",
-      userId: "1",
+      userId: this.userId,
       description: this.description,
       name: this.name,
       dailyMenus: selectedItems

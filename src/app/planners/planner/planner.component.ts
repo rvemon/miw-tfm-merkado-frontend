@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ConfirmationDialogComponent} from "../../shared/confirmation-dialog/confirmation-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
 import {Router} from "@angular/router";
@@ -6,7 +6,6 @@ import {Planner} from "../../shared/model/planner.model";
 import {DailyMenu} from "../../shared/model/dailyMenu.model";
 import {AddDailyMenuDialogComponent} from "./add-daily-menu-dialog/add-daily-menu-dialog.component";
 import {PlannerService} from "../planner.service";
-import {AddMealDialogComponent} from "../../dailymenus/dailymenu/add-meal-dialog/add-meal-dialog.component";
 import {ShoppingListDialogComponent} from "./shopping-list-dialog/shopping-list-dialog.component";
 
 @Component({
@@ -14,7 +13,7 @@ import {ShoppingListDialogComponent} from "./shopping-list-dialog/shopping-list-
   templateUrl: './planner.component.html',
   styleUrls: ['./planner.component.css']
 })
-export class PlannerComponent {
+export class PlannerComponent implements OnInit{
 
   editable: boolean = false;
   shoppingList: boolean = false;
@@ -33,6 +32,13 @@ export class PlannerComponent {
     } else {
       console.log("no meal");
     }
+  }
+
+  ngOnInit(){
+    if(sessionStorage.getItem('id')==null){
+      this.router.navigate(['login']);
+    }
+
   }
 
   getPlanner(id: string){

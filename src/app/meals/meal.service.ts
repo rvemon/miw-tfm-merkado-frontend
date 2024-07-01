@@ -13,7 +13,7 @@ export class MealService{
   }
 
   getMealsByUserId(id:string): Observable<Meal[]>{
-    return this.http.get<Meal[]>(('http://localhost:8080/meals/userid/1'));
+    return this.http.get<Meal[]>(('http://localhost:8080/meals/userid/'+ id));
   }
 
   getMeal(id: string):Observable<Meal>{

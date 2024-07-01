@@ -5,6 +5,12 @@
   border: 3px solid black;
 }
 
+.logout-button{
+  margin-top: 2%;
+  margin-bottom: 2%;
+  text-align: center;
+}
+
 .nav-item>a{
   color: white;
 }

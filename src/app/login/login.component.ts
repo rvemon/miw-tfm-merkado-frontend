@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { UfobattleService } from '../ufobattle.service';
 import { Router } from '@angular/router';
-import { loginobservable } from '../loginobservable.service';
+import {UsersService} from "../users.service";
+import {UserRequest} from "../shared/model/userRequest.model";
+import {UserResponse} from "../shared/model/userResponse.model";
 
 @Component({
   selector: 'app-login',
@@ -12,32 +13,50 @@ import { loginobservable } from '../loginobservable.service';
 })
 export class LoginComponent implements OnInit{
   constructor(private builder:FormBuilder, private toastr: ToastrService,
-    private service:UfobattleService, private router: Router, private loginService: loginobservable){}
+              private router: Router, private usersService: UsersService){}
 
   ngOnInit(){
     if(this.checkToken()){
       console.log("automatic login");
       this.toastr.success('Login Successfull.');
-      this.router.navigate(['game']);
-      this.loginService.loggedIn();
-    };
+      this.router.navigate(['home']);
+      console.log("session: ", sessionStorage.getItem('id'));
+    }
   }
 
   loginform = this.builder.group({
-    username: this.builder.control('', Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(8)])),
+    email: this.builder.control('', Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(20)])),
     password: this.builder.control('', Validators.compose([Validators.required, Validators.minLength(4)]))
   });
 
   checkToken(){
-    return sessionStorage.getItem('token')  && sessionStorage.getItem('username');
+    return sessionStorage.getItem('token')  && sessionStorage.getItem('id');
   }
 
   login(){
-    this.toastr.success('Login Successfull.');
+    if(this.loginform.valid){
+      const  userRequest : UserRequest = {
+        email: this.loginform.value.email as string,
+        password: this.loginform.value.password as string
+      }
 
-    this.router.navigate(['planners']);
-
-    return;
+      this.usersService.login(userRequest).subscribe(
+        (data: UserResponse)=>{
+          sessionStorage.setItem('id', data.id);
+          sessionStorage.setItem('token', data.token);
+          sessionStorage.setItem('email', data.token);
+          this.toastr.success('Login Successfull.');
+          this.router.navigate(['home']);
+        },
+        (error)=>{
+          this.toastr.error('Something went wrong. Please enter a valid username and password.');
+        }
+      );
+    }
+    else{
+      this.toastr.error('Enter a valid username and password.');
+    }
 
   }
+
 }
