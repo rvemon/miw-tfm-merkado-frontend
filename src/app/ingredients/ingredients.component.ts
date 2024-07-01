@@ -56,7 +56,7 @@ export class IngredientsComponent {
         this.getIngredientsByUserId(this.userId);
       },
       (error)=>{
-        console.error("error");
+        console.error("error", error);
       }
     );
   }
@@ -88,7 +88,7 @@ export class IngredientsComponent {
           this.getIngredientsByUserId(this.userId);
         },
         (error) =>{
-          console.error("error");
+          console.error("error", error);
         }
       );
   }

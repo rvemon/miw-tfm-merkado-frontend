@@ -38,7 +38,7 @@ export class PlannersComponent implements OnInit{
         console.log("planners obtained", this.planners);
       },
       (error)=>{
-        console.log("error");
+        console.log("error", error);
       }
     );
   }

@@ -40,7 +40,7 @@ export class DailymenusComponent {
         console.log("dailyMenusobtained", this.dailyMenus);
       },
       (error)=>{
-        console.log("error");
+        console.log("error", error);
       }
     );
   }

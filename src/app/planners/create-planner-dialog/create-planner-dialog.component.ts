@@ -30,7 +30,7 @@ export class CreatePlannerDialogComponent {
   }
 
   getDailyMenus(id:string){
-    this.dailyMenuService.getDailyMenuByUserId(this.userId).subscribe(
+    this.dailyMenuService.getDailyMenuByUserId(id).subscribe(
       (data: DailyMenu[])=>{
         this.dailyMenuList = data;
       }

@@ -1,9 +1,7 @@
 import {Injectable} from "@angular/core";
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import {Observable} from "rxjs";
-import {EndPoints} from "../shared/end-points";
 import {Planner} from "../shared/model/planner.model";
-import {DailyMenu} from "../shared/model/dailyMenu.model";
 import {ShoppingItem} from "../shared/model/shoppingItem.model";
 
 @Injectable({

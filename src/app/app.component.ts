@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserService } from './user.service';
-import { loginobservable } from './loginobservable.service';
 import { ToastrService } from 'ngx-toastr';
 import {ConfirmationDialogComponent} from "./shared/confirmation-dialog/confirmation-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
-import {DailyMenu} from "./shared/model/dailyMenu.model";
 
 @Component({
   selector: 'app-root',

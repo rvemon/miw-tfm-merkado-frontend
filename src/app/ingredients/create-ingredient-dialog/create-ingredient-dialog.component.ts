@@ -37,7 +37,7 @@ export class CreateIngredientDialogComponent{
           console.log("created");
         },
         (error)=>{
-          console.log("error");
+          console.log("error", error);
 
         }
       );

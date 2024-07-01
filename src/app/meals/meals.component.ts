@@ -1,4 +1,4 @@
-import {Component, inject, Inject, OnInit} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
 import {CreateMealDialogComponent} from "./create-meal-dialog/create-meal-dialog.component";
@@ -39,7 +39,7 @@ export class MealsComponent implements OnInit{
         console.log("meals obtained", this.meals);
       },
       (error)=>{
-        console.log("error");
+        console.log("error:", error);
       }
     );
   }

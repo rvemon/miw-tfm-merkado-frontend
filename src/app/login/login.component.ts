@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit{
           this.toastr.success('Login Successfull.');
           this.router.navigate(['home']);
         },
-        (error)=>{
+        ()=>{
           this.toastr.error('Something went wrong. Please enter a valid username and password.');
         }
       );
