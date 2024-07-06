@@ -17,6 +17,7 @@
           <a style="vertical-align: bottom; font-weight: bold;">Daily Menus</a>
           <ng-template [ngIf]="editable">
             <button style="margin-left: 5%" (click)="addDailyMenu()">Add</button>
+            <button style="margin-left: 5%" (click)="editList()">Edit List</button>
           </ng-template>
 
         </div>
@@ -27,7 +28,7 @@
                 <div style="font-weight: bold; margin-right: 1%">Name:</div>
                 <div style="min-width: 25%;">{{dailyMenu.name}}</div>
               </div>
-              <ng-template [ngIf]="editable">
+              <ng-template [ngIf]="editableList">
                 <mat-icon fontIcon="delete" style="align-self: center" (click)="removeDailyMenu(dailyMenu.id)"></mat-icon>
               </ng-template>
             </div>

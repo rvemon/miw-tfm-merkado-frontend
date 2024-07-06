@@ -11,9 +11,9 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 export class CreateIngredientDialogComponent{
   newIngredient: Ingredient;
-  ingredientTypes: string[] = ['LIQUID', 'DAIRY', 'VEGETABLE', 'FRUIT', 'POWDER'];
+  ingredientTypes: string[] = ['LIQUID', 'DAIRY', 'VEGETABLE', 'FRUIT', 'POWDER', 'MEAT', 'SEASONING', 'GRAIN'];
 
-  ingredientUnits: string[] = ['GRAM', 'MILLILITER', 'TABLESPOON', 'TEASPOON', 'CUP'];
+  ingredientUnits: string[] = ['GRAM', 'MILLILITER', 'TABLESPOON', 'TEASPOON', 'CUP', 'PIECE'];
   userId: string = '1';
   constructor(
     private dialogRef: MatDialogRef<CreateIngredientDialogComponent>,

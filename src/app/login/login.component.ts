@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit{
           sessionStorage.setItem('token', data.token);
           sessionStorage.setItem('email', data.token);
           this.toastr.success('Login Successfull.');
-          this.router.navigate(['home']);
+          this.router.navigate(['planners']);
         },
         ()=>{
           this.toastr.error('Something went wrong. Please enter a valid username and password.');
